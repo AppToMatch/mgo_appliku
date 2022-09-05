@@ -1,0 +1,41 @@
+services:
+  db:
+    environment:
+    - POSTGRES_USER=website
+    - POSTGRES_PASSWORD=website
+    - POSTGRES_DB=website
+    image: postgres:12
+    mem_limit: 128m
+
+  release:
+    build: .
+    command: python manage.py migrate
+    environment:
+    - DJANGO_ALLOWED_HOSTS=*
+    - DJANGO_SECRET_KEY=$(openssl rand -base64 32)
+    
+    - DJANGO_DEBUG=1
+    - PORT=8000
+    volumes:
+      - "./:/code"
+    depends_on:
+      - db
+
+    mem_limit: 128m
+  web:
+    build: .
+    command: gunicorn mango.wsgi
+    environment:
+      - DJANGO_ALLOWED_HOSTS=*
+      - DJANGO_SECRET_KEY=$(openssl rand -base64 32)
+      
+      - DJANGO_DEBUG=1
+      - PORT=8000
+    mem_limit: 128m
+    ports:
+    - 127.0.0.1:8000:8000
+    volumes:
+      - "./:/code"
+    depends_on:
+      - db
+version: '2.4'

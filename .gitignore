@@ -1,0 +1,4 @@
+static_media/
+static/
+venv/
+db.sqlite3
