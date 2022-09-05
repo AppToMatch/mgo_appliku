@@ -206,3 +206,16 @@ try:
     del DATABASES['default']['OPTIONS']['sslmode']
 except Exception:
     pass
+
+
+
+
+AWS_ACCESS_KEY_ID = 'AKIA2CKBACGMKY76HF4K'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'intelbyt'
+AWS_DEFAULT_ACL = None
+AWS_LOCATION = 'static'
+AWS_MEDIA_LOCATION = 'media'
+STATIC_URL = 'https://%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
