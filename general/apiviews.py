@@ -626,11 +626,11 @@ class ProfileView(APIView):
         try:
             profile = Profile.objects.get(**filters)
             serializer_class = ProfilesSerializer(profile)
-            data = {serializer_class.data}
+            data = {"profile":serializer_class.data}
         except ObjectDoesNotExist:
             data = {'status':'failed','error':'Profile not found'}
-        # except Exception:
-        #     data = {'status':'failed','error':'Invalid data'}
+        except Exception:
+            data = {'status':'failed','error':'Invalid data'}
 
         return Response(data)
 
