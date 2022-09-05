@@ -190,14 +190,14 @@ EMAIL_HOST_USER='info.intelbyt@gmail.com'
 EMAIL_HOST_PASSWORD='tbdzlkfzwwfswpdo'
 
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-# # sample media file config
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR / 'uploads'
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# sample media file config
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'uploads'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -210,12 +210,12 @@ except Exception:
 
 
 
-AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
-AWS_DEFAULT_ACL = None
-# AWS_LOCATION = 'static'
-AWS_MEDIA_LOCATION = 'media'
-STATIC_URL = 'https://%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME,)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+# AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
+# AWS_DEFAULT_ACL = None
+# # AWS_LOCATION = 'static'
+# AWS_MEDIA_LOCATION = 'media'
+# STATIC_URL = 'https://%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME,)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
