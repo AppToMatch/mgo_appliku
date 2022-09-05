@@ -159,7 +159,7 @@ class Picture(models.Model):
 
 
 class Chat(models.Model):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING,default='')
+    sender = models.ForeignKey(User, on_delete=models.DO_NOTHING,default='')
     to = models.ForeignKey(User, on_delete=models.DO_NOTHING,default='', related_name="chatto")
     message = models.TextField(max_length=1000,default='')
     image = models.ImageField(upload_to='media/images/chats',blank=True)
