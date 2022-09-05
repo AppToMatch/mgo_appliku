@@ -190,14 +190,14 @@ EMAIL_HOST_USER='info.intelbyt@gmail.com'
 EMAIL_HOST_PASSWORD='tbdzlkfzwwfswpdo'
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-# sample media file config
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'uploads'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# # sample media file config
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'uploads'
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
