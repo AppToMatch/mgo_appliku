@@ -107,7 +107,7 @@ class Profile(models.Model):
     age = models.IntegerField(default=0)
     height = models.IntegerField(default=0)
     gender = models.CharField(max_length =225, choices=(('M','Male'), ('F','Female')), default='',blank=True)
-    photo = models.ImageField(upload_to="media/senders/photo", blank=True)
+    photo = models.ImageField(blank=True)
     profile_edit_date = models.DateField(auto_now=True)
     date_time_added = models.DateTimeField(default=now)
     date_of_birth = models.DateField(default=now)
@@ -151,7 +151,7 @@ class Help(models.Model):
 
 class Picture(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING,blank=True,null= True,editable= False)
-    image = models.ImageField(upload_to='media/images/profile_pictures',blank=True)
+    image = models.ImageField(,blank=True)
     is_profile_picture = models.BooleanField(default=False,)
     class Meta:
         db_table = 'pictures'
@@ -162,7 +162,7 @@ class Chat(models.Model):
     sender = models.ForeignKey(User, on_delete=models.DO_NOTHING,default='')
     to = models.ForeignKey(User, on_delete=models.DO_NOTHING,default='', related_name="chatto")
     message = models.TextField(max_length=1000,default='')
-    image = models.ImageField(upload_to='media/images/chats',blank=True)
+    image = models.ImageField(blank=True)
     is_read = models.BooleanField(default=False,)
     is_sent = models.BooleanField(default=True,)
     is_delivered = models.BooleanField(default=False,)
@@ -178,7 +178,7 @@ class Reply(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE,default='')
     reply_by = models.ForeignKey(User, on_delete=models.DO_NOTHING,default='',)
     message = models.TextField(max_length=1000,default='')
-    image = models.ImageField(upload_to='media/images/chats',blank=True)
+    image = models.ImageField(blank=True)
     is_read = models.BooleanField(default=False,)
     is_sent = models.BooleanField(default=True,)
     is_delivered = models.BooleanField(default=False,)
