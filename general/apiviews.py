@@ -664,13 +664,14 @@ class ProfileView(APIView):
 
         try:
             profile = Profile.objects.get(**filters)
+            serializer_class = ProfilesSerializer(profile)
+            data = {serializer_class.data}
         except ObjectDoesNotExist:
             data = {'status':'failed','error':'Profile not found'}
         except Exception:
             data = {'status':'failed','error':'Invalid data'}
 
-        serializer_class = ProfilesSerializer(profile)
-        return Response(serializer_class.data)
+        return Response(data)
 
 
     def post(self,request):
@@ -851,7 +852,7 @@ class ReplyView(APIView):
     def get(self,request):
         user = getuser(request)
         filters = getfilters(request,exclude=[''],contain_words=['',])
-        reply = Reply.objects.filter(**filters)
+        reply = Reply.objects.filter(reply_by=user,**filters)
         serializer_class = RepliesSerializer(reply,many=True)
         return Response(serializer_class.data,status=status.HTTP_202_ACCEPTED)
 
