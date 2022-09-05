@@ -699,8 +699,8 @@ class InterestsView(APIView):
         try:
             profile = Profile.objects.get(user=user)
             interests = profile.interests.all()
-            for interest in interests:
-                interest.delete()
+            # for interest in interests:
+            #     interest.delete()
             serializer_class = InterestsSerializer(interests,many = True)
             return Response(serializer_class.data)
         except ObjectDoesNotExist:
