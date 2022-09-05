@@ -717,7 +717,7 @@ class InterestsView(APIView):
                 profile = serializer_class.instance
                 profile.user = user
                 profile.save()
-        interests = request.POST.copy().getlist('interests')
+        interests = request.data['interests']
         for interest in interests:
             interest_instance = Interest.objects.create(name = interest)
             profile.interests.add(interest_instance)
