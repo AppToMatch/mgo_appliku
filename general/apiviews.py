@@ -814,7 +814,7 @@ class ChatView(APIView):
     def get(self,request):
         user = getuser(request)
         filters = getfilters(request,exclude=[''],contain_words=['',])
-        chat = Chat.objects.filter(user=user,**filters)
+        chat = Chat.objects.filter(sender=user,**filters)
         serializer_class = ChatsSerializer(chat,many=True)
         return Response(serializer_class.data,status=status.HTTP_202_ACCEPTED)
 
