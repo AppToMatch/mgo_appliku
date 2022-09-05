@@ -825,8 +825,11 @@ class ReplyView(APIView):
         if serializer_class.is_valid():
             serializer_class.save()
             reply = serializer_class.instance
-        serializer_class = RepliesSerializer(reply)
-        data = {'status':'success','reply':serializer_class.data}
+            serializer_class = RepliesSerializer(reply)
+            data = {'status':'success','reply':serializer_class.data}
+        else:
+            data = {'status':'failed','error':'Invalid data'}
+   
         return Response(data,status=status.HTTP_202_ACCEPTED)
 
 
