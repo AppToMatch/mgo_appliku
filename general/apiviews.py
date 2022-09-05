@@ -660,10 +660,12 @@ class ProfileView(APIView):
 
     def get(self,request):
         user = getuser(request)
+        filters = getfilters(request,exclude=[''],contain_words=['',])
+
         try:
-            profile = Profile.objects.get(user=user)
+            profile = Profile.objects.get(**filters)
         except ObjectDoesNotExist:
-            profile = Profile.objects.create(user=user)
+            data = {'status':'failed','error':'Profile not found'}
         serializer_class = ProfilesSerializer(profile)
         return Response(serializer_class.data)
 
