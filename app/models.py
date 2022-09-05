@@ -151,7 +151,7 @@ class Help(models.Model):
 
 class Picture(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING,blank=True,null= True,editable= False)
-    image = models.ImageField(,blank=True)
+    image = models.ImageField(blank=True)
     is_profile_picture = models.BooleanField(default=False,)
     class Meta:
         db_table = 'pictures'
