@@ -282,45 +282,6 @@ class HelpView(APIView):
             
         return Response(data,status=status.HTTP_202_ACCEPTED)
 
-class ProfileView(APIView):
-
-    queryset = Profile.objects.all()
-    serializer_class = ProfilesSerializer
-    authentication_classes =[TokenAuthentication,]
-    # permission_classed=[IsAuthenticated]
-
-    def get(self,request):
-        # token=request.session['token']
-        # print(token.key)
-        user = getuser(request)
-        try:
-            profile = Profile.objects.get(user=user)
-            profile_serializer_class = ProfilesSerializer(profile)
-            data = {'status':'success','profile':profile_serializer_class.data}
-        except ObjectDoesNotExist:
-            data = {'profile':''}
-        return Response(data,status=status.HTTP_202_ACCEPTED)
-
-
-    def post(self,request):
-        user = getuser(request)
-        try:
-            profile = Profile.objects.get(user=user)
-            serializer_class = ProfilesSerializer(profile,instance=profile,data=request.data)
-        except ObjectDoesNotExist:
-            serializer_class = ProfilesSerializer(data=request.data)
-        if serializer_class.is_valid():
-            serializer_class.save()
-            profile = serializer_class.instance
-            profile.user= getuser(request)
-            profile.save()
-            profile_serializer_class = ProfilesSerializer(profile)
-            data = {'status':'success','profile':profile_serializer_class.data}
-        else:
-
-            data = {'status':'failed','description':'Invalid data',}
-            
-        return Response(data,status=status.HTTP_202_ACCEPTED)
 
 
 class VerifyPhone(APIView):
@@ -668,8 +629,8 @@ class ProfileView(APIView):
             data = {serializer_class.data}
         except ObjectDoesNotExist:
             data = {'status':'failed','error':'Profile not found'}
-        except Exception:
-            data = {'status':'failed','error':'Invalid data'}
+        # except Exception:
+        #     data = {'status':'failed','error':'Invalid data'}
 
         return Response(data)
 
