@@ -14,6 +14,7 @@ urlpatterns = [
     path('user', gapiviews.UserView.as_view(),name='user'),
     path('users', gapiviews.AllUserView.as_view(),name='users'),
     path('user/create', gapiviews.CreateUserView.as_view(),name='create_user'),
+    path('user/delete', gapiviews.DeleteUserView.as_view(),name='delete_user'),
     path("login", gapiviews.LoginView.as_view(), name="login"),
     path("token/auth", gapiviews.tokenAuth.as_view(), name="token-auth"),
     # path("packages", gapiviews.Packages.as_view(), name="packages"),

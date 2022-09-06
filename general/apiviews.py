@@ -416,6 +416,33 @@ class CreateUserView(APIView):
                 return Response({'error':'invalid data'},status=status.HTTP_400_BAD_REQUEST)
 
 
+
+
+class DeleteUserView(APIView):
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = ()
+
+    def post(self,request):
+        try:
+            user = User.objects.get(email = str(request.data['email']))
+            securities = Security.objects.filter(user=user)
+            for security in securities:
+                security.delete()
+            profiles = Profile.objects.filter(user=user)
+            for profile in profiles:
+                profile.delete()
+            tokens = AuthToken.objects.filter(user=user)
+            for token in tokens:
+                token.delete()
+
+            user.delete()            
+            return Response({'deleted':True},status=status.HTTP_200_OK)
+
+        except ObjectDoesNotExist:
+            return Response({'error':'invalid data'},status=status.HTTP_400_BAD_REQUEST)
+
 # class CreateUser(APIView):
 
 #     queryset = User.objects.all()
