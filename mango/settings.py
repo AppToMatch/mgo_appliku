@@ -109,6 +109,7 @@ try:
     env = environ.Env()
 
     DEBUG = env.bool('DJANGO_DEBUG', False)
+    USE_SPACES = env.bool('USE_SPACES')
 
     DATABASES = {
         'default': env.db('DATABASE_URL'),
@@ -218,7 +219,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # DEFAULT_FILE_STORAGE = 'mango.storages.MediaStorage'
 
-USE_SPACES = os.getenv('USE_SPACES') == 'TRUE'
 
 if USE_SPACES:
     # settings
