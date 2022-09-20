@@ -48,13 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
     'app',
     'general',
     'knox',
-    'storages'
+    # 'storages'
     ]
 
 MIDDLEWARE = [
@@ -208,9 +208,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = 'AKIA2CKBACGMALXKTS4P'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'mgo-api'
+AWS_DEFAULT_ACL = None
+AWS_LOCATION = 'static'
+AWS_MEDIA_LOCATION = 'media'
+STATIC_URL = 'https://%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_DEFAULT_ACL = None
 AWS_LOCATION = 'static'
 AWS_MEDIA_LOCATION = 'media'

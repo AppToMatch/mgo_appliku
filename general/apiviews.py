@@ -612,15 +612,10 @@ class PictureView(APIView):
             serializer_class.save()
             picture = serializer_class.instance
             picture.user=user
-            try:
-                picture.save()
-                serializer_class = PicturesSerializer(picture)
-                data = {'status':'success','picture':serializer_class.data}   
-                res_status= status.HTTP_202_ACCEPTED         
-            except Exception:
-                picture.delete()
-                data = {'status':'failed','err':'duplicate entry'}            
-                res_status= status.HTTP_400_BAD_REQUEST
+            picture.save()
+            serializer_class = PicturesSerializer(picture)
+            data = {'status':'success','picture':serializer_class.data}   
+            res_status= status.HTTP_202_ACCEPTED         
         return Response(data,status = res_status)
 
 
