@@ -24,7 +24,6 @@ from django.shortcuts import get_object_or_404
 from imagekit.models import ImageSpecField # < here
 from pilkit.processors import ResizeToFill
 from random import random
-from tinymce.models import HTMLField
 import os
 import base64
 from django.core.exceptions import ObjectDoesNotExist
