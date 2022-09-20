@@ -217,7 +217,7 @@ AWS_LOCATION = 'static'
 AWS_MEDIA_LOCATION = 'media'
 STATIC_URL = 'https://%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'yousmart.storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'mango.storages.MediaStorage'
 
 # USE_SPACES = os.getenv('USE_SPACES') == 'TRUE'
 
